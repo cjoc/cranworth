@@ -45,7 +45,8 @@ class Firm(models.Model):
     contact_name = models.CharField('Contact Name', max_length=100, blank=True, null=True)
     contact_email = models.EmailField('Contact Email', blank=True, null=True)
     website = models.URLField('Website URL', blank=True, null=True)
-    is_featured = models.BooleanField('Featured?')
+    magic_circle = models.BooleanField('Is Magic Circle?')
+    honorable_mention = models.BooleanField('Is Honorable Mention?')
 
     def __str__(self):
         return self.name

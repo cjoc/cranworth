@@ -20,7 +20,12 @@ import cranworth_site.views as views
 app_name = 'cranworth_site'
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home', views.home, name='home'),
+    path('', views.home, name='home'),
     path('firm/<int:firm_id>', views.firm_view, name='firm-view'),
+    path('category/<int:category_id>', views.category_view, name='category-view'),
+    path('firms', views.firms_list, name='firms-list'),
+    path('about', views.about, name='about'),
     path('landing', views.landing, name='landing'),
     path(r'', include('ucamwebauth.urls')),
     path(r'', include('tinymce.urls')),
