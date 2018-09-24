@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>{{ firm.name }} | Cranworth Law Society</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4">
+
+    <a class="navbar-brand" href="/">
+        <!--<img src="https://www.jcr.dow.cam.ac.uk/storage/app/media/dowjcrwhite.png" width="60"
+             style="padding-right: 10px">-->
+        Cranworth Law Society
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-none d-lg-block" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {{ student }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/home">Home</a>
+                    <a class="dropdown-item" href="/firms">Browse Firms</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/accounts/logout">Logout</a>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link d-lg-none d-xl-none" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-lg-none d-xl-none" href="/firms">Browse Rooms</a>
+                </li>
+                <div class="dropdown-divider-burgundy"></div>
+                <li class="nav-item">
+                    <a class="nav-link d-lg-none d-xl-none" href="/accounts/logout">Logout</a>
+                </li>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+<div class="container">
+
+
+    <div class="row mb-4 mt-4">
+
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 mb-4">
+            <div class="border-bottom mb-3">
+                <h2>{{ firm.name }}</h2>
+                <p style="text-transform: uppercase; color: #b89642">{{ firm.category }}</p>
+            </div>
+            <div>
+                {{ firm.description|linebreaks }}
+            </div>
+
+            {% if firm.areas.all %}
+            <div>
+                <h5>Specialist Areas</h5>
+                <ul>
+                {% for area in firm.areas.all %}
+                    <li>{{ area }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if firm.ideal_description %}
+            <div>
+                <h5>The Ideal Candidate</h5>
+                {{ firm.ideal_description | safe | linebreaks }}
+            </div>
+            {% endif %}
+
+            {% if firm.opportunities_deadlines %}
+            <div class="mt-3">
+                <h5>Opportunities & Deadlines</h5>
+                {{ firm.opportunities_deadlines | safe | linebreaks }}
+            </div>
+            {% endif %}
+
+            {% if reviews %}
+                {% for review in reviews %}
+                <div class="card mt-4">
+                    <div class="card-header">
+                        {{ review.author }} says:
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ review.title }}</h5>
+                        <p class="card-text">{{ review.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-4">
+            {% if firm.logo %}
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <img class="img-thumbnail" src="/media/{{ firm.logo.url }}">
+            </div>
+            {% endif %}
+
+            <div class="d-md-block">
+            <div class="list-group">
+
+                <p class="list-group-item" align="center">
+                    <img class="img-thumbnail" src="https://vignette.wikia.nocookie.net/suits/images/c/cf/Pearson_Specter_Litt_%284x02%29.png/revision/latest?cb=20170829011027">
+                </p>
+                {% if firm.address is not None %}
+                <p class="list-group-item">
+                    <b>Address</b><br>
+                    {{ firm.address }}
+                </p>
+                {% endif %}
+                {% if firm.contact_email is not None and firm.contact_name is not None %}
+                <p class="list-group-item">
+                    <b>Contact</b><br>
+                    {{ firm.contact_name }}<br>
+                    <a href="mailto:{{ firm.contact_email }}">{{ firm.contact_email }}</a>
+                </p>
+                <a href="mailto:{{ firm.contact_email }}" class="list-group-item"><i class="fa fa-key"></i> <span>Email Firm</span></a>
+                {% endif %}
+                {% if firm.website is not None %}
+                <a href="{{ firm.website }}" target="blank" class="list-group-item"><i class="fa fa-key"></i> <span>Visit Website</span></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
