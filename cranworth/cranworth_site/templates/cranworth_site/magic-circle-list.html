@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
-    <title>About This Site | Cranworth Law Society</title>
+    <title>Magic Circle | Cranworth Law Society</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
 <body>
@@ -54,23 +54,33 @@
 
 <div class="container">
 
-    <div class="row">
-
+    <div class="row mt-4">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 mb-4">
-            <div class="border-bottom mb-3">
-                <h2>About This Site</h2>
-            </div>
-            <div>
-                This website was created with &#10084; by Cameron O'Connor, JCR Internet Officer 2018-19. It is released
-            under the MIT
-            Licence, and the source is available on <a href="https://github.com/cjoc/cranworth" target="blank">GitHub</a>.
-            The backend uses the <a href="https://www.djangoproject.com/" target="blank">Django</a> framework, while the
-            UI is simply
-            built using Bootstrap.<br><br>
-            If you have any feedback or suggestions about how this website can be improved, please feel free to contact
-            the Cranworth president.
+            <div class="border-bottom">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h2>Magic Circle</h2>
+                    </div>
+                </div>
             </div>
 
+            <table class="table table-striped table-hover mt-4">
+
+                <tbody>
+                {% for firm in firms %}
+                    <tr>
+                        <td><b>{{ firm.name }}</b>
+                            <p style="text-transform: uppercase; color: #b89642">{{ firm.category }}</p>
+                        </td>
+                        <td class="d-none d-sm-table-cell">{{ firm.excerpt }}</td>
+                        <td>{{ staircase.available_rooms }}</td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="/firm/{{ firm.firm_id }}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
 
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-4">
@@ -79,14 +89,14 @@
                 <div class="list-group">
                     <a href="/" class="list-group-item"><i class="fa fa-key"></i> <span>Home</span></a>
                     <a href="/about" class="list-group-item"><i class="fa fa-key"></i> <span>Contact Us</span></a>
-                    <a href="/about" class="list-group-item active"><i class="fa fa-key"></i> <span>About This Site</span></a>
+                    <a href="/about" class="list-group-item"><i class="fa fa-key"></i> <span>About This Site</span></a>
                 </div>
             </div>
 
             <div class="d-md-block mt-3">
                 <div class="list-group">
                     <a href="/firms" class="list-group-item"><i class="fa fa-key"></i> <span>All Firms</span></a>
-                    <a href="/magic-circle" class="list-group-item"><i class="fa fa-key"></i> <span>Magic Circle</span></a>
+                    <a href="/magic-circle" class="list-group-item active"><i class="fa fa-key"></i> <span>Magic Circle</span></a>
                     <a href="/honorable-mentions" class="list-group-item"><i class="fa fa-key"></i>
                         <span>Honorable Mentions</span></a>
                     {% for category in categories %}
@@ -97,18 +107,18 @@
 
         </div>
 
-    </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
 
 </body>
 </html>

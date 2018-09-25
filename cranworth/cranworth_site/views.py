@@ -34,6 +34,10 @@ def firm_view(request, firm_id):
                                                              'student': student,
                                                              'reviews': reviews})
 
+
+# Firms List
+# Lists all firms, irrespective of category.
+
 def firms_list(request):
     student = Student.objects.get(user_id=request.user.username)
     firms = Firm.objects.order_by('name')
@@ -41,6 +45,31 @@ def firms_list(request):
     return render(request, 'cranworth_site/firms-list.html', {'firms': firms,
                                                               'student': student,
                                                               'categories': categories})
+
+
+# Magic Circle List List
+# Lists all firms which are in the magic circle.
+
+def magic_circle_list(request):
+    student = Student.objects.get(user_id=request.user.username)
+    firms = Firm.objects.filter(magic_circle=True).order_by('name')
+    categories = Category.objects.order_by('name')
+    return render(request, 'cranworth_site/magic-circle-list.html', {'firms': firms,
+                                                                     'student': student,
+                                                                     'categories': categories})
+
+
+# Magic Circle List List
+# Lists all firms which are in the magic circle.
+
+def honorable_mentions_list(request):
+    student = Student.objects.get(user_id=request.user.username)
+    firms = Firm.objects.filter(honorable_mention=True).order_by('name')
+    categories = Category.objects.order_by('name')
+    return render(request, 'cranworth_site/honorable-mentions-list.html', {'firms': firms,
+                                                                           'student': student,
+                                                                           'categories': categories})
+
 
 # Landing
 # Shows landing page, inviting user to authenticate.
@@ -54,7 +83,9 @@ def landing(request):
 
 def about(request):
     student = Student.objects.get(user_id=request.user.username)
-    return render(request, 'cranworth_site/about.html', {'student': student})
+    categories = Category.objects.order_by('name')
+    return render(request, 'cranworth_site/about.html', {'student': student,
+                                                         'categories': categories})
 
 
 # Home
@@ -62,6 +93,7 @@ def about(request):
 
 def home(request):
     student = Student.objects.get(user_id=request.user.username)
+    categories = Category.objects.order_by('name')
     honorable_mentions = Firm.objects.filter(honorable_mention=True)
     count = honorable_mentions.count()
     if count == 0:
@@ -78,4 +110,5 @@ def home(request):
         magic_circle = magic_circles[r]
     return render(request, 'cranworth_site/home.html', {'student': student,
                                                         'honorable_mention': honorable_mention,
-                                                        'magic_circle': magic_circle})
+                                                        'magic_circle': magic_circle,
+                                                        'categories': categories})

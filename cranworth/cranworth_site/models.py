@@ -5,7 +5,6 @@ Cameron O'Connor, 2018
 """
 
 from django.db import models
-from tinymce.models import HTMLField
 
 
 # Category of law firm, e.g. 'commercial'.

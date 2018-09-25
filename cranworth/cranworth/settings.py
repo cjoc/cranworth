@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cranworth_site.apps.CranworthSiteConfig',
     'ucamwebauth',
-    'tinymce'
 ]
 
 MIDDLEWARE = [

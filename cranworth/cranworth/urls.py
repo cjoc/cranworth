@@ -25,6 +25,8 @@ urlpatterns = [
     path('firm/<int:firm_id>', views.firm_view, name='firm-view'),
     path('category/<int:category_id>', views.category_view, name='category-view'),
     path('firms', views.firms_list, name='firms-list'),
+    path('magic-circle', views.magic_circle_list, name='magic-circle'),
+    path('honorable-mentions', views.honorable_mentions_list, name='honorable-mentions'),
     path('about', views.about, name='about'),
     path('landing', views.landing, name='landing'),
     path(r'', include('ucamwebauth.urls')),
