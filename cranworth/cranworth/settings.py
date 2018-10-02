@@ -53,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'cranworth.urls'
+MEDIA_ROOT = '/public/societies/cranworth/public_html/static/media'
 
 LOGIN_EXEMPT_URLS = (
     'accounts/login/',
