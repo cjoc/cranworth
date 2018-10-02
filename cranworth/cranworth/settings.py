@@ -25,7 +25,7 @@ SECRET_KEY = 'b_qjuf11w*#n$2&ymq48jxos2^*xffsj(^@bw_f!)pj)fwm3ty'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'cranworth.soc.srcf.net']
 
 
 # Application definition
