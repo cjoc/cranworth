@@ -7,7 +7,7 @@ admin.site.register(Firm)
 admin.site.register(Category)
 admin.site.register(Student)
 admin.site.register(Review)
-admin.site.register(Area)
+admin.site.register(StaticPage)
 
 admin.site.site_header = "Cranworth Law Society"
 admin.site.site_title = "Cranworth Law Society"

@@ -14,13 +14,15 @@ from random import randint
 
 def category_view(request, category_id):
     category = get_object_or_404(Category, category_id=category_id)
+    static_pages = StaticPage.objects.all()
     categories = Category.objects.order_by('name')
     student = Student.objects.get(user_id=request.user.username)
     firms = Firm.objects.filter(category=category).order_by('name')
     return render(request, 'cranworth_site/category-view.html', {'firms': firms,
                                                                  'student': student,
                                                                  'category': category,
-                                                                 'categories': categories})
+                                                                 'categories': categories,
+                                                                 'static_pages': static_pages})
 
 
 # Firm View
@@ -40,35 +42,27 @@ def firm_view(request, firm_id):
 
 def firms_list(request):
     student = Student.objects.get(user_id=request.user.username)
+    static_pages = StaticPage.objects.all()
     firms = Firm.objects.order_by('name')
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/firms-list.html', {'firms': firms,
                                                               'student': student,
-                                                              'categories': categories})
+                                                              'categories': categories,
+                                                              'static_pages': static_pages})
 
 
-# Magic Circle List List
+# Magic Circle List
 # Lists all firms which are in the magic circle.
 
 def magic_circle_list(request):
     student = Student.objects.get(user_id=request.user.username)
+    static_pages = StaticPage.objects.all()
     firms = Firm.objects.filter(magic_circle=True).order_by('name')
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/magic-circle-list.html', {'firms': firms,
                                                                      'student': student,
-                                                                     'categories': categories})
-
-
-# Magic Circle List List
-# Lists all firms which are in the magic circle.
-
-def honorable_mentions_list(request):
-    student = Student.objects.get(user_id=request.user.username)
-    firms = Firm.objects.filter(honorable_mention=True).order_by('name')
-    categories = Category.objects.order_by('name')
-    return render(request, 'cranworth_site/honorable-mentions-list.html', {'firms': firms,
-                                                                           'student': student,
-                                                                           'categories': categories})
+                                                                     'categories': categories,
+                                                                     'static_pages': static_pages})
 
 
 # Landing
@@ -83,9 +77,18 @@ def landing(request):
 
 def about(request):
     student = Student.objects.get(user_id=request.user.username)
+    static_pages = StaticPage.objects.all()
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/about.html', {'student': student,
-                                                         'categories': categories})
+                                                         'categories': categories,
+                                                         'static_pages': static_pages})
+
+
+# Error
+# Shows error message explaining user is not a society member.
+
+def error(request):
+    return render(request, 'cranworth_site/error.html')
 
 
 # Home
@@ -93,22 +96,39 @@ def about(request):
 
 def home(request):
     student = Student.objects.get(user_id=request.user.username)
+    static_pages = StaticPage.objects.all()
     categories = Category.objects.order_by('name')
-    honorable_mentions = Firm.objects.filter(honorable_mention=True)
-    count = honorable_mentions.count()
-    if count == 0:
-        honorable_mention = None
-    else:
-        r = randint(0, count-1)
-        honorable_mention = honorable_mentions[r]
     magic_circles = Firm.objects.filter(magic_circle=True)
     count = magic_circles.count()
     if count == 0:
-        magic_circle = None
+        magic_circle_1 = None
+        magic_circle_2 = None
     else:
-        r = randint(0, count - 1)
-        magic_circle = magic_circles[r]
+        r1 = randint(0, count-1)
+        r2 = randint(0, count-1)
+        if r1 == r2 and count != 1:
+            if r1 > 0:
+                r1 -= 1
+            else:
+                r2 -= 1
+        magic_circle_1 = magic_circles[r1]
+        magic_circle_2 = magic_circles[r2]
     return render(request, 'cranworth_site/home.html', {'student': student,
-                                                        'honorable_mention': honorable_mention,
-                                                        'magic_circle': magic_circle,
-                                                        'categories': categories})
+                                                        'magic_circle_1': magic_circle_1,
+                                                        'magic_circle_2': magic_circle_2,
+                                                        'categories': categories,
+                                                        'static_pages': static_pages})
+
+
+# Static Page
+# Shows simple static page with title and text.
+
+def static_page(request, page_id):
+    page = get_object_or_404(StaticPage, page_id=page_id)
+    student = Student.objects.get(user_id=request.user.username)
+    static_pages = StaticPage.objects.all()
+    categories = Category.objects.order_by('name')
+    return render(request, 'cranworth_site/static-page.html', {'student': student,
+                                                               'static_pages': static_pages,
+                                                               'categories': categories,
+                                                               'page': page})

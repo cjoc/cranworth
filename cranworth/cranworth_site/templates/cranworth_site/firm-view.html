@@ -13,8 +13,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4">
 
     <a class="navbar-brand" href="/">
-        <!--<img src="https://www.jcr.dow.cam.ac.uk/storage/app/media/dowjcrwhite.png" width="60"
-             style="padding-right: 10px">-->
         Cranworth Law Society
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,9 +37,9 @@
                     <a class="nav-link d-lg-none d-xl-none" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-lg-none d-xl-none" href="/firms">Browse Rooms</a>
+                    <a class="nav-link d-lg-none d-xl-none" href="/firms">Browse Firms</a>
                 </li>
-                <div class="dropdown-divider-burgundy"></div>
+                <div class="dropdown-divider-grey"></div>
                 <li class="nav-item">
                     <a class="nav-link d-lg-none d-xl-none" href="/accounts/logout">Logout</a>
                 </li>
@@ -65,14 +63,10 @@
                 {{ firm.description|linebreaks }}
             </div>
 
-            {% if firm.areas.all %}
+            {% if firm.areas %}
             <div>
                 <h5>Specialist Areas</h5>
-                <ul>
-                {% for area in firm.areas.all %}
-                    <li>{{ area }}</li>
-                {% endfor %}
-                </ul>
+                {{ firm.areas | safe | linebreaks }}
             </div>
             {% endif %}
 

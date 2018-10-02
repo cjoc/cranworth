@@ -3144,11 +3144,11 @@ input[type="button"].btn-block {
   border-top: 1px solid #e9ecef;
 }
 
-.dropdown-divider-burgundy {
+.dropdown-divider-grey {
   height: 0;
   margin: 0.5rem 0;
   overflow: hidden;
-  border-top: 1px solid #bf78a8;
+  border-top: 1px solid #7f8586;
 }
 
 .dropdown-item {

@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b_qjuf11w*#n$2&ymq48jxos2^*xffsj(^@bw_f!)pj)fwm3ty'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'cranworth.urls'
 
 LOGIN_EXEMPT_URLS = (
     'accounts/login/',
-    'landing'
+    'landing',
 )
 
 TEMPLATES = [
@@ -83,10 +83,15 @@ WSGI_APPLICATION = 'cranworth.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cranworth',
+        'USER': 'cranworth',
+        'PASSWORD': 'MuevJayd',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation
@@ -126,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/public/societies/cranworth/public_html/static'
 
 
 # Raven (ucamwebauth) authentication
@@ -138,6 +144,7 @@ AUTHENTICATION_BACKENDS = (
 
 UCAMWEBAUTH_LOGIN_URL = 'https://raven.cam.ac.uk/auth/authenticate.html'
 UCAMWEBAUTH_LOGOUT_URL = 'https://raven.cam.ac.uk/auth/logout.html'
+UCAMWEBAUTH_RETURN_URL = 'http://cranworth.soc.srcf.net/raven_return/'
 UCAMWEBAUTH_LOGOUT_REDIRECT = '/'
 UCAMWEBAUTH_CREATE_USE = False
 UCAMWEBAUTH_CERTS = {2: """-----BEGIN CERTIFICATE-----

@@ -20,25 +20,18 @@ class Category(models.Model):
         return self.name
 
 
-class Area(models.Model):
-    area_id = models.AutoField(primary_key=True)
-    title = models.CharField('Title', max_length=100)
-
-    def __str__(self):
-        return self.title
-
-
 # Law firm.
 
 class Firm(models.Model):
     firm_id = models.AutoField(primary_key=True)
     name = models.CharField('Name', max_length=100)
+    is_chamber = models.BooleanField('Is Chamber?', default=False)
     logo = models.ImageField('Logo', upload_to='firm_logos', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_DEFAULT, default=None)
     description = models.TextField('Summary', blank=True, null=True)
-    areas = models.ManyToManyField(Area, blank=True)
-    ideal_description = models.TextField('The Ideal Candidate')
-    opportunities_deadlines = models.TextField('Opportunities & Deadlines')
+    areas = models.TextField('Areas', blank=True, null=True)
+    cranworth_links = models.TextField('Cranworth Links', blank=True, null=True)
+    opportunities_deadlines = models.TextField('Opportunities & Deadlines', blank=True, null=True)
     excerpt = models.TextField('Excerpt', blank=True, null=True)
     address = models.CharField('Address', max_length=100, blank=True, null=True)
     contact_name = models.CharField('Contact Name', max_length=100, blank=True, null=True)
@@ -51,6 +44,8 @@ class Firm(models.Model):
         return self.name
 
 
+# Student member of Cranworth who can access the website.
+
 class Student(models.Model):
     user_id = models.CharField('CRSid', max_length=10)
     first_name = models.CharField('First Name', max_length=50)
@@ -59,6 +54,8 @@ class Student(models.Model):
     def __str__(self):
         return self.first_name + " " + self.surname
 
+
+# Review of a law firm which a student has left.
 
 class Review(models.Model):
     review_id = models.AutoField(primary_key=True)
@@ -69,3 +66,14 @@ class Review(models.Model):
 
     def __str__(self):
         return "Review " + str(self.review_id) + " - " + str(self.firm)
+
+
+# Static page.
+
+class StaticPage(models.Model):
+    page_id = models.AutoField(primary_key=True)
+    title = models.CharField('Title', max_length=150)
+    text = models.TextField('Body Text', blank=True, null=True)
+
+    def __str__(self):
+        return self.title

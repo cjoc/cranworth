@@ -28,11 +28,11 @@ class AuthRequiredMiddleware(object):
             else:
                 return response
         # Check that user is registered as a student, excluding admin pages.
-        ADMIN_URLS = [compile('admin')]
+        ADMIN_URLS = [compile('admin'), compile('error')]
         try:
             path = request.path_info.lstrip('/')
             if not any(m.match(path) for m in ADMIN_URLS):
                 Student.objects.get(user_id=request.user.username)
         except Student.DoesNotExist:
-            return Http404("You can't access this site.")
+            return HttpResponseRedirect('/error')
         return response
