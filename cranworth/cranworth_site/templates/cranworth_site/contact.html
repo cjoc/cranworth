@@ -1,10 +1,119 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>Contact Us | Cranworth Law Society</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
 <body>
-$END$
+
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4">
+
+    <a class="navbar-brand" href="/">
+        Cranworth Law Society
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-none d-lg-block" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {{ student }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/home">Home</a>
+                    <a class="dropdown-item" href="/firms">Browse Firms</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/accounts/logout">Logout</a>
+                </div>
+            <li class="nav-item">
+                <a class="nav-link d-lg-none d-xl-none" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-lg-none d-xl-none" href="/firms">Browse Firms</a>
+            </li>
+            <div class="dropdown-divider-grey"></div>
+            <li class="nav-item">
+                <a class="nav-link d-lg-none d-xl-none" href="/accounts/logout">Logout</a>
+            </li>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 mb-4">
+            <div class="border-bottom mb-3">
+                <h2>Contact Us</h2>
+            </div>
+            <div>
+                This website was created with &#10084; by Cameron O'Connor, JCR Internet Officer 2018-19. It is released
+            under the MIT
+            Licence, and the source is available on <a href="https://github.com/cjoc/cranworth" target="blank">GitHub</a>.
+            The backend uses the <a href="https://www.djangoproject.com/" target="blank">Django</a> framework, while the
+            UI is simply
+            built using Bootstrap.<br><br>
+            If you have any feedback or suggestions about how this website can be improved, please feel free to contact
+            the Cranworth president.
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-4">
+
+            <div class="d-md-block">
+                <div class="list-group">
+                    <a href="/" class="list-group-item"><i class="fa fa-key"></i> <span>Home</span></a>
+                    <a href="/contact" class="list-group-item"><i class="fa fa-key"></i> <span>Contact Us</span></a>
+                    {% for p in static_pages %}
+                    <a href="/page/{{ p.page_id }}" class="list-group-item"><i class="fa fa-key"></i> <span>{{ p }}</span></a>
+                    {% endfor %}
+                    <a href="/about" class="list-group-item active"><i class="fa fa-key"></i> <span>About This Site</span></a>
+                </div>
+            </div>
+
+            <div class="d-md-block mt-3">
+                <div class="list-group">
+                    <a href="/firms" class="list-group-item"><i class="fa fa-key"></i> <span>All Firms</span></a>
+                    <a href="/magic-circle" class="list-group-item"><i class="fa fa-key"></i> <span>Magic Circle</span></a>
+                    {% for c in categories %}
+                        {% if c.category_id != category.category_id %}
+                            <a href="/category/{{ c.category_id }}" class="list-group-item"><i class="fa fa-key"></i>
+                                <span>{{ c }}</span></a>
+                        {% else %}
+                            <a href="/category/{{ c.category_id }}" class="list-group-item active"><i
+                                    class="fa fa-key"></i> <span>{{ c }}</span></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>
