@@ -68,9 +68,9 @@
                 {% for firm in firms %}
                     <tr>
                         <td><b>{{ firm.name }}</b>
-                            <p style="text-transform: uppercase; color: #b89642">{{ firm.category }}</p>
+                            <p style="text-transform: uppercase; color: #402471">{{ firm.category }}</p>
                             {% if firm.is_chamber %}
-                            <p style="text-transform: uppercase; color: #b89642">CHAMBERS</p>
+                            <p style="text-transform: uppercase; color: #402471">CHAMBERS</p>
                             {% endif %}
                         </td>
                         <td class="d-none d-sm-table-cell">{{ firm.excerpt }}</td>
@@ -89,7 +89,6 @@
             <div class="d-md-block">
                 <div class="list-group">
                     <a href="/" class="list-group-item"><i class="fa fa-key"></i> <span>Home</span></a>
-                    <a href="/contact" class="list-group-item"><i class="fa fa-key"></i> <span>Contact Us</span></a>
                     {% for p in static_pages %}
                     <a href="/page/{{ p.page_id }}" class="list-group-item"><i class="fa fa-key"></i> <span>{{ p }}</span></a>
                     {% endfor %}

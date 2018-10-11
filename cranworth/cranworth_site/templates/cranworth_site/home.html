@@ -57,20 +57,22 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 mb-4">
             <div class="border-bottom mb-3">
                 <h2>Welcome to Cranworth</h2>
-                <p style="text-transform: uppercase; color: #b89642">Downing's Law Society</p>
+                <p style="text-transform: uppercase; color: #402471">Downing's Law Society</p>
             </div>
             <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porta egestas nunc sed facilisis.
-                Suspendisse consectetur congue augue at mattis. Nam pellentesque vitae est non sagittis. Morbi rhoncus
-                diam nisl, sed viverra lorem luctus vel. Nam at sagittis dolor. Aenean velit metus, fringilla eu congue
-                ut, porta et dolor. Pellentesque blandit congue orci, in eleifend est imperdiet ac. Sed sit amet tellus
-                eu mi dignissim suscipit.<br><br>
+                The Cranworth Society is the largest student-run college law society in Cambridge. All Downing
+                undergraduates studying Law are automatically members, although we welcome any non-law students
+                from the college who are considering converting to law at any point. Such students should contact
+                the society to become a member, free of charge.<br><br>
 
-                Cras euismod leo a risus venenatis, sit amet consequat nisl molestie. Etiam elit augue, consequat cursus
-                est quis, accumsan molestie metus. Pellentesque aliquet nisl sem, vitae lobortis odio molestie at. In
-                hac habitasse platea dictumst. In condimentum justo ex, vitae mattis sem congue eu. Nunc commodo purus
-                leo, et elementum enim euismod in. Integer consectetur, risus in egestas vehicula, urna quam luctus
-                dolor, in ultricies tellus felis ac nisl. In hac habitasse platea dictumst.
+                The society is active throughout the year by maintaining a close relationship with firms of
+                solicitors and chambers, organising social events for students and arranging for guest speakers
+                to talk to the society. Past speakers have included Lord Walker, and several barristers and solicitors.
+                Highlights of the year include a sponsored day trip to London, our annual moot against Magdalene,
+                fancy dress end-of-term private formals and the Cranworth Annual Dinner to which many distinguished
+                academics, barristers, solicitors and judges are invited. Past guest speakers have included Lord Dyson,
+                Baroness Hale and Lizzie Cooke.
+
             </div>
 
             <div class="row mt-5 mb-4">
@@ -88,7 +90,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ magic_circle_1.name }}</h5>
                             <p class="card-text"
-                               style="text-transform: uppercase; color: #b89642">{{ magic_circle_1.category }}</p>
+                               style="text-transform: uppercase; color: #402471">{{ magic_circle_1.category }}</p>
                             <p class="card-text">{{ magic_circle_1.excerpt }}</p>
                             <a href="/firm/{{ magic_circle_1.firm_id }}" class="btn btn-primary">View</a>
                         </div>
@@ -105,7 +107,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ magic_circle_2.name }}</h5>
                             <p class="card-text"
-                               style="text-transform: uppercase; color: #b89642">{{ magic_circle_2.category }}</p>
+                               style="text-transform: uppercase; color: #402471">{{ magic_circle_2.category }}</p>
                             <p class="card-text">{{ magic_circle_2.excerpt }}</p>
                             <a href="/firm/{{ magic_circle_2.firm_id }}" class="btn btn-primary">View</a>
                         </div>
@@ -121,7 +123,6 @@
             <div class="d-md-block">
                 <div class="list-group">
                     <a href="/" class="list-group-item active"><i class="fa fa-key"></i> <span>Home</span></a>
-                    <a href="/contact" class="list-group-item"><i class="fa fa-key"></i> <span>Contact Us</span></a>
                     {% for p in static_pages %}
                     <a href="/page/{{ p.page_id }}" class="list-group-item"><i class="fa fa-key"></i> <span>{{ p }}</span></a>
                     {% endfor %}

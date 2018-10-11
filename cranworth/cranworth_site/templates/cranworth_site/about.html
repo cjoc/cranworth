@@ -59,12 +59,13 @@
                 <h2>About This Site</h2>
             </div>
             <div>
-                This website was created with &#10084; by Cameron O'Connor, JCR Internet Officer 2018-19. It is released
+                This website was created with &#10084; by Cameron O'Connor, Downing JCR Internet Officer 2018-19. It is released
             under the MIT
             Licence, and the source is available on <a href="https://github.com/cjoc/cranworth" target="blank">GitHub</a>.
             The backend uses the <a href="https://www.djangoproject.com/" target="blank">Django</a> framework, while the
             UI is simply
             built using Bootstrap.<br><br>
+            <a href="https://cjoc.xyz" target="blank">https://cjoc.xyz</a><br><br>
             If you have any feedback or suggestions about how this website can be improved, please feel free to contact
             the Cranworth president.
             </div>
@@ -76,7 +77,6 @@
             <div class="d-md-block">
                 <div class="list-group">
                     <a href="/" class="list-group-item"><i class="fa fa-key"></i> <span>Home</span></a>
-                    <a href="/contact" class="list-group-item"><i class="fa fa-key"></i> <span>Contact Us</span></a>
                     {% for p in static_pages %}
                     <a href="/page/{{ p.page_id }}" class="list-group-item"><i class="fa fa-key"></i> <span>{{ p }}</span></a>
                     {% endfor %}

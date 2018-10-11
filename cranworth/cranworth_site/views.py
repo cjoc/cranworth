@@ -5,7 +5,8 @@ Cameron O'Connor, 2018
 """
 
 from .models import *
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
+from django.template import RequestContext
 from random import randint
 
 
@@ -132,3 +133,12 @@ def static_page(request, page_id):
                                                                'static_pages': static_pages,
                                                                'categories': categories,
                                                                'page': page})
+
+
+# 404
+# Custom 404 page.
+
+def handler404(request, exception, template_name='404.html'):
+    response = render(request, 'cranworth_site/404.html', {})
+    response.status_code = 404
+    return response

@@ -57,9 +57,9 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 mb-4">
             <div class="border-bottom mb-3">
                 <h2>{{ firm.name }}</h2>
-                <p style="text-transform: uppercase; color: #b89642">{{ firm.category }}</p>
+                <p style="text-transform: uppercase; color: #402471">{{ firm.category }}</p>
                 {% if firm.is_chamber %}
-                <p style="text-transform: uppercase; color: #b89642">CHAMBERS</p>
+                <p style="text-transform: uppercase; color: #402471">CHAMBERS</p>
                 {% endif %}
             </div>
             <div>
@@ -67,27 +67,30 @@
             </div>
 
             {% if firm.areas %}
-            <div>
-                <h5>Specialist Areas</h5>
+            <div class="border-top mt-4">
+                <h5 class="mt-4">Specialist Areas</h5>
                 {{ firm.areas | safe | linebreaks }}
             </div>
             {% endif %}
 
             {% if firm.ideal_description %}
-            <div>
-                <h5>The Ideal Candidate</h5>
+            <div class="border-top mt-4">
+                <h5 class="mt-4">Useful Links</h5>
                 {{ firm.ideal_description | safe | linebreaks }}
             </div>
             {% endif %}
 
             {% if firm.opportunities_deadlines %}
-            <div class="mt-3">
-                <h5>Opportunities & Deadlines</h5>
+            <div class="border-top mt-4">
+                <h5 class="mt-4">Opportunities & Deadlines</h5>
                 {{ firm.opportunities_deadlines | safe | linebreaks }}
             </div>
             {% endif %}
 
             {% if reviews %}
+                <div class="border-top mt-4">
+                <h5 class="mt-4">Reviews</h5>
+                </div>
                 {% for review in reviews %}
                 <div class="card mt-4">
                     <div class="card-header">
@@ -110,7 +113,7 @@
 
                 {% if firm.logo %}
                 <p class="list-group-item" align="center">
-                    <img class="img-thumbnail" src="http://cranworth.soc.srcf.net/static/{{ firm.logo.url }}">
+                    <img class="img-thumbnail" src="http://cranworth.soc.srcf.net/static/media/{{ firm.logo.url }}">
                 </p>
                 {% endif %}
                 {% if firm.address is not None %}

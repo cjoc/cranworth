@@ -18,6 +18,7 @@ from django.urls import path, include
 import cranworth_site.views as views
 
 app_name = 'cranworth_site'
+handler404 = 'cranworth_site.views.handler404'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home', views.home, name='home'),
