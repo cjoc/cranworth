@@ -7,8 +7,17 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <title>Firms | Cranworth Law Society</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
+
+<script>
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 
 <nav class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4">
 
@@ -66,12 +75,9 @@
 
                 <tbody>
                 {% for firm in firms %}
-                    <tr>
+                    <tr class="clickable-row" data-href="/firm/{{ firm.firm_id }}" style="cursor: pointer;">
                         <td><b>{{ firm.name }}</b>
-                            <p style="text-transform: uppercase; color: #402471">{{ firm.category }}</p>
-                            {% if firm.is_chamber %}
-                            <p style="text-transform: uppercase; color: #402471">CHAMBERS</p>
-                            {% endif %}
+                            <p style="text-transform: uppercase; color: #402471">{{ firm.category }}{% if firm.is_chamber %}<br>CHAMBERS{% endif %}</p>
                         </td>
                         <td class="d-none d-sm-table-cell">{{ firm.excerpt }}</td>
                         <td>{{ staircase.available_rooms }}</td>

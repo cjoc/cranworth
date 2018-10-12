@@ -15,7 +15,7 @@ from random import randint
 
 def category_view(request, category_id):
     category = get_object_or_404(Category, category_id=category_id)
-    static_pages = StaticPage.objects.all()
+    static_pages = StaticPage.objects.order_by('title')
     categories = Category.objects.order_by('name')
     student = Student.objects.get(user_id=request.user.username)
     firms = Firm.objects.filter(category=category).order_by('name')
@@ -43,7 +43,7 @@ def firm_view(request, firm_id):
 
 def firms_list(request):
     student = Student.objects.get(user_id=request.user.username)
-    static_pages = StaticPage.objects.all()
+    static_pages = StaticPage.objects.order_by('title')
     firms = Firm.objects.order_by('name')
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/firms-list.html', {'firms': firms,
@@ -57,7 +57,7 @@ def firms_list(request):
 
 def magic_circle_list(request):
     student = Student.objects.get(user_id=request.user.username)
-    static_pages = StaticPage.objects.all()
+    static_pages = StaticPage.objects.order_by('title')
     firms = Firm.objects.filter(magic_circle=True).order_by('name')
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/magic-circle-list.html', {'firms': firms,
@@ -78,7 +78,7 @@ def landing(request):
 
 def about(request):
     student = Student.objects.get(user_id=request.user.username)
-    static_pages = StaticPage.objects.all()
+    static_pages = StaticPage.objects.order_by('title')
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/about.html', {'student': student,
                                                          'categories': categories,
@@ -129,7 +129,7 @@ def home(request):
 def static_page(request, page_id):
     page = get_object_or_404(StaticPage, page_id=page_id)
     student = Student.objects.get(user_id=request.user.username)
-    static_pages = StaticPage.objects.all()
+    static_pages = StaticPage.objects.order_by('title')
     categories = Category.objects.order_by('name')
     return render(request, 'cranworth_site/static-page.html', {'student': student,
                                                                'static_pages': static_pages,

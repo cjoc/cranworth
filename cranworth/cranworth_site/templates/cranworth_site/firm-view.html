@@ -57,10 +57,7 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 mb-4">
             <div class="border-bottom mb-3">
                 <h2>{{ firm.name }}</h2>
-                <p style="text-transform: uppercase; color: #402471">{{ firm.category }}</p>
-                {% if firm.is_chamber %}
-                <p style="text-transform: uppercase; color: #402471">CHAMBERS</p>
-                {% endif %}
+                <p style="text-transform: uppercase; color: #402471">{{ firm.category }}{% if firm.is_chamber %} | CHAMBERS{% endif %}</p>
             </div>
             <div>
                 {{ firm.description | linebreaks }}
