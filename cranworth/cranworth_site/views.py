@@ -110,8 +110,10 @@ def home(request):
         if r1 == r2 and count >= 2:
             if r1 > 0:
                 r1 -= 1
-            else:
+            elif r2 > 0:
                 r2 -= 1
+            else:
+                r2 += 1
         magic_circle_1 = magic_circles[r1]
         magic_circle_2 = magic_circles[r2]
     return render(request, 'cranworth_site/home.html', {'student': student,
