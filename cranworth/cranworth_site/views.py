@@ -97,7 +97,7 @@ def error(request):
 
 def home(request):
     student = Student.objects.get(user_id=request.user.username)
-    static_pages = StaticPage.objects.all()
+    static_pages = StaticPage.objects.order_by('title')
     categories = Category.objects.order_by('name')
     magic_circles = Firm.objects.filter(magic_circle=True)
     count = magic_circles.count()
@@ -107,7 +107,7 @@ def home(request):
     else:
         r1 = randint(0, count-1)
         r2 = randint(0, count-1)
-        if r1 == r2 and count != 1:
+        if r1 == r2 and count >= 2:
             if r1 > 0:
                 r1 -= 1
             else:
