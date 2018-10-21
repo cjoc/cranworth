@@ -20,13 +20,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b_qjuf11w*#n$2&ymq48jxos2^*xffsj(^@bw_f!)pj)fwm3ty'
+# TODO - enter your own secret key here.
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'cranworth.soc.srcf.net']
+# TODO - add the deployment site here.
+ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "cranworth_site/static"),)
 
 # Application definition
 
@@ -53,7 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'cranworth.urls'
-MEDIA_ROOT = '/public/societies/cranworth/public_html/static/media'
+# TODO: enter media root
+MEDIA_ROOT = ''
 
 LOGIN_EXEMPT_URLS = (
     'accounts/login/',
@@ -82,14 +86,12 @@ WSGI_APPLICATION = 'cranworth.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# TODO - don't use sqlite3 in production, instead connect to MySQL.
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cranworth',
-        'USER': 'cranworth',
-        'PASSWORD': 'MuevJayd',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -117,9 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GB'
 
 USE_I18N = True
 
@@ -132,8 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/public/societies/cranworth/public_html/static'
-
 
 # Raven (ucamwebauth) authentication
 # https://pypi.org/project/django-ucamwebauth/
@@ -145,7 +145,7 @@ AUTHENTICATION_BACKENDS = (
 
 UCAMWEBAUTH_LOGIN_URL = 'https://raven.cam.ac.uk/auth/authenticate.html'
 UCAMWEBAUTH_LOGOUT_URL = 'https://raven.cam.ac.uk/auth/logout.html'
-UCAMWEBAUTH_RETURN_URL = 'http://cranworth.soc.srcf.net/raven_return/'
+#UCAMWEBAUTH_RETURN_URL = 'http://cranworth.soc.srcf.net/raven_return/'
 UCAMWEBAUTH_LOGOUT_REDIRECT = '/'
 UCAMWEBAUTH_CREATE_USE = False
 UCAMWEBAUTH_CERTS = {2: """-----BEGIN CERTIFICATE-----
